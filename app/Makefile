@@ -2,6 +2,9 @@
 
 default: pipenv_shell
 
+check_json:
+	check-jsonschema --schemafile=schema.json *.yml
+
 pipenv_freeze:
 	pip3 install pipreqs
 	pipreqs --ignore tests . --force

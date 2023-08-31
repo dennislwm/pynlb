@@ -1,0 +1,286 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [ "pynlb" ],
+  "properties": {
+    "pynlb": {
+      "description": "A unique identifier for pynlb",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [ "users" ],
+      "properties": {
+        "users": {
+          "$ref": "#/definitions/users"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "users": {
+      "type": "array",
+      "additionalItems": false,
+      "items": {
+        "type": "object",
+        "required": [ "user_name" ],
+        "additionalProperties": false,
+        "properties": {
+          "user_name": {
+            "type": "string"
+          },
+          "user_enabled": {
+            "enum": [ "True", "False" ]
+          },
+          "catalogue": {
+            "$ref": "#/definitions/api/catalogue"
+          },
+          "eresource": {
+            "$ref": "#/definitions/api/eresource"
+          },
+          "recommendation": {
+            "$ref": "#/definitions/api/recommendation"
+          }
+        }
+      }
+    },
+    "api": {
+      "catalogue": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "brn": {
+                  "$ref": "#/definitions/field/brn"
+                },
+                "isbn": {
+                  "$ref": "#/definitions/field/isbn"
+                },
+                "limit": {
+                  "$ref": "#/definitions/field/limit"
+                },
+                "offset": {
+                  "$ref": "#/definitions/field/offset"
+                },
+                "set_id": {
+                  "$ref": "#/definitions/field/set_id"
+                },
+                "sort_fields": {
+                  "$ref": "#/definitions/field/sort_fields"
+                }
+              }
+            }
+          },
+          "new": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "audience": {
+                  "enum": [ "adult", "children", "youth" ]
+                },
+                "fiction": {
+                  "enum": [ "True", "False" ]
+                },
+                "language": {
+                  "$ref": "#/definitions/field/language"
+                },
+                "limit": {
+                  "$ref": "#/definitions/field/limit"
+                },
+                "location_code": {
+                  "$ref": "#/definitions/field/location_code"
+                },
+                "offset": {
+                  "$ref": "#/definitions/field/offset"
+                },
+                "set_id": {
+                  "$ref": "#/definitions/field/set_id"
+                },
+                "sort_fields": {
+                  "$ref": "#/definitions/field/sort_fields"
+                }
+              }
+            }
+          },
+          "search": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "brn": {
+                  "$ref": "#/definitions/field/brn"
+                },
+                "isbn": {
+                  "$ref": "#/definitions/field/isbn"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "location_code": {
+                  "$ref": "#/definitions/field/location_code"
+                },
+                "format_code": {
+                  "type": "string"
+                },
+                "language": {
+                  "$ref": "#/definitions/field/language"
+                },
+                "publish_year": {
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2999
+                },
+                "limit": {
+                  "$ref": "#/definitions/field/limit"
+                },
+                "set_id": {
+                  "$ref": "#/definitions/field/set_id"
+                },
+                "last_irn": {
+                  "$ref": "#/definitions/field/last_irn"
+                },
+                "sort_fields": {
+                  "$ref": "#/definitions/field/sort_fields"
+                }
+              }
+            }
+          },
+          "title": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "brn": {
+                  "$ref": "#/definitions/field/brn"
+                },
+                "isbn": {
+                  "$ref": "#/definitions/field/isbn"
+                }
+              }
+            }
+          }
+        }
+      },
+      "eresource": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "availability": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object"
+            }
+          },
+          "search": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "content_type": {
+                  "enum": [ "eBooks", "Magazines and Articles", "Images", "Records and Papers", "Websites", "Audio Books", "Digital Books", "Physical Objects" ]
+                },
+                "creator": {
+                  "enum": [ "Creator", "Contributor" ]
+                },
+                "data_from": {
+                  "enum": [ "Apabi", "Gale", "Netlibrary", "Overdrive", "LMS", "NLB", "NAS", "NHB" ]
+                },
+                "isbn": {
+                  "$ref": "#/definitions/field/isbn"
+                },
+                "keywords": {
+                  "type": "string"
+                },
+                "limit": {
+                  "$ref": "#/definitions/field/limit"
+                },
+                "offset": {
+                  "$ref": "#/definitions/field/offset"
+                },
+                "publisher": {
+                  "type": "string"
+                },
+                "sort_fields": {
+                  "$ref": "#/definitions/field/sort_fields"
+                },
+                "subject": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 142
+                },
+                "title": {
+                }
+              }
+            }
+          }
+        }
+      },
+      "recommendation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "array",
+            "additionalItems": false,
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "field": {
+      "brn": {
+        "type": "integer"
+      },
+      "isbn": {
+        "type": "string",
+        "minLength": 10,
+        "maxLength": 13
+      },
+      "language": {
+        "enum": [ "english", "chinese", "malay", "tamil", "others" ]
+      },
+      "last_irn": {
+        "type": "integer"
+      },
+      "limit": {
+        "type": "integer",
+        "minimum": 10,
+        "maximum": 100
+      },
+      "location_code": {
+        "enum": [ "CMPL", "SKPL", "SRPL", "TRL", "WRL"]
+      },
+      "offset": {
+        "type": "integer"
+      },
+      "set_id": {
+        "type": "integer"
+      },
+      "sort_fields": {
+        "enum": [ "relevance", "-dateCreated", "+dateCreated", "-title", "+title" ]
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@ import yaml
 def config(logger):
   with open('config.yml', mode='r') as f:
     y=yaml.safe_load(f)
-    j=json.dumps(y)
+    j=json.dumps(y, indent=2)
     logger.info(f"config.json: {j}")
     f.close()
   return j
